@@ -7,7 +7,8 @@ const url = process.env.REACT_APP_API_URL;
 
 class FetchNews extends React.Component {
   state = {
-    loading: true
+    loading: true,
+    groups: []
   };
 
   async componentDidMount() {
@@ -18,7 +19,7 @@ class FetchNews extends React.Component {
       loading: false,
       news: data
     });
-    console.log(this.state.news);
+    //console.log(this.state.news);
   }
 
   render() {
@@ -34,12 +35,18 @@ class FetchNews extends React.Component {
 
           console.log(data.title);
 
-          this.setState({
-            //group: data.title
-          });
-
+          //this.setState({
+          //  group: data.title
+          //});
+          this.state.groups.push(data.title);
+          console.log(this.state.groups);
+          
         })}
-        <p>{this.state.group}</p>
+
+        {this.state.news.map(news => (
+        <p>{news.title}</p>
+      ))}   
+
       </div>
     );
 
